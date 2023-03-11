@@ -1,6 +1,6 @@
 FROM uhub.service.ucloud.cn/entropypool/alpine:3.16
 
-COPY sphinx-plugin /usr/local/bin/sphinx-plugin-p3
+COPY sphinx-plugin-p3 /usr/local/bin/sphinx-plugin-p3
 
 ENV ENV_COIN_LOCAL_API='' \
   ENV_COIN_PUBLIC_API='' \

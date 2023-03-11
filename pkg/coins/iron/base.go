@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/register"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
 	solana "github.com/gagliardetto/solana-go"
 )
 

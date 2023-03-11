@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/env"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/env"
 )
 
 // tokenInfo registe and tokenHandler registe --------------------

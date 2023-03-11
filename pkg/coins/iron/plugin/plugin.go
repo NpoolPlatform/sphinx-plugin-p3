@@ -6,12 +6,12 @@ import (
 	"fmt"
 
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins"
-	sol "github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/iron"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/register"
-	ct "github.com/NpoolPlatform/sphinx-plugin-P3/pkg/types"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
+	sol "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/iron"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
+	ct "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/types"
 
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/env"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/env"
 	bin "github.com/gagliardetto/binary"
 	solana "github.com/gagliardetto/solana-go"
 	"github.com/gagliardetto/solana-go/rpc"

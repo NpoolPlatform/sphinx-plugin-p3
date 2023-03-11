@@ -1,4 +1,4 @@
-module github.com/NpoolPlatform/sphinx-plugin-P3
+module github.com/NpoolPlatform/sphinx-plugin-p3
 
 go 1.17
 

@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/endpoints"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/utils"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/endpoints"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/utils"
 	"github.com/gagliardetto/solana-go/rpc"
 )
 

@@ -1,10 +1,10 @@
 [Unit]
-Description=Sphinx Plugin
+Description=Sphinx Plugin P3
 After=network.target
 
 [Service]
 Environment="ENV_COIN_LOCAL_API="
-ExecStart=/opt/sphinx-plugin-P3/sphinx-plugin run
+ExecStart=/opt/sphinx-plugin-p3/sphinx-plugin-p3 run
 ExecStop=/bin/kill -s QUIT $MAINPID
 Restart=always
 RestartSec=30

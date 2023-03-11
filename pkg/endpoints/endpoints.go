@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"strings"
 
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/config"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/config"
 )
 
 var (

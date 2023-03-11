@@ -7,15 +7,15 @@ import (
 	"time"
 
 	"github.com/NpoolPlatform/message/npool/sphinxproxy"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/client"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/getter"
-	coins_register "github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/register"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/config"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/env"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/log"
-	pconst "github.com/NpoolPlatform/sphinx-plugin-P3/pkg/message/const"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/types"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/client"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/getter"
+	coins_register "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/config"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/env"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/log"
+	pconst "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/message/const"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/types"
 )
 
 func init() {

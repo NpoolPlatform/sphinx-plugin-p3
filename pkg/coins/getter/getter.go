@@ -2,11 +2,11 @@ package getter
 
 import (
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
 
-	_ "github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/iron"
-	_ "github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/iron/plugin"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/register"
+	_ "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/iron"
+	_ "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/iron/plugin"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
 )
 
 func GetTokenInfo(name string) *coins.TokenInfo {

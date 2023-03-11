@@ -1,6 +1,6 @@
 # Npool go service app template
 
-[![Test](https://github.com/NpoolPlatform/sphinx-plugin-P3/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/NpoolPlatform/sphinx-plugin-P3/actions/workflows/main.yml)
+[![Test](https://github.com/NpoolPlatform/sphinx-plugin-p3/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/NpoolPlatform/sphinx-plugin-p3/actions/workflows/main.yml)
 
 [目录](#目录)
 

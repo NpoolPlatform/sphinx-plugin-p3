@@ -7,10 +7,10 @@ import (
 	"time"
 
 	"github.com/NpoolPlatform/go-service-framework/pkg/logger"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/getter"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/env"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/log"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/getter"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/env"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/log"
 )
 
 const (

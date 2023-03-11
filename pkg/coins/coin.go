@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/utils"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/utils"
 )
 
 type (

@@ -1,7 +1,7 @@
 package iron
 
 import (
-	ct "github.com/NpoolPlatform/sphinx-plugin-P3/pkg/types"
+	ct "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/types"
 )
 
 type SignMsgTx struct {

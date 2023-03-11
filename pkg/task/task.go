@@ -8,16 +8,16 @@ import (
 
 	"github.com/NpoolPlatform/go-service-framework/pkg/logger"
 	"github.com/NpoolPlatform/message/npool/sphinxproxy"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/client"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/log"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/client"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/log"
 
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/getter"
-	coins_register "github.com/NpoolPlatform/sphinx-plugin-P3/pkg/coins/register"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/getter"
+	coins_register "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
 
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/config"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/env"
-	"github.com/NpoolPlatform/sphinx-plugin-P3/pkg/rpc"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/config"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/env"
+	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/rpc"
 	"google.golang.org/grpc"
 )
 
