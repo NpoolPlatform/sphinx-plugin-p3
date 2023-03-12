@@ -4,7 +4,7 @@ import (
 	ct "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/types"
 )
 
-type IronfishAccount struct {
+type ViewAccount struct {
 	PublicKey   string `json:"publicKey"`
 	ViewKey     string `json:"viewKey"`
 	OutgoingKey string `json:"outgoingKey"`
