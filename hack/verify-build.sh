@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+MY_PATH=`cd $(dirname $0);pwd`
+source $MY_PATH/golang-env.sh
 
 set -o errexit
 set -o nounset
@@ -34,7 +36,7 @@ for PLATFORM in "${PLATFORMS[@]}"; do
     service_name=$1
 
     echo "Building project for $PLATFORM -- $version $compile_date $git_revision"
-    CGO_ENABLED=0 GOOS=${OS} GOARCH=${ARCH} go build -v -ldflags "-s -w \
+    CGO_ENABLED=1 GOOS=${OS} GOARCH=${ARCH} go build -v -ldflags "-s -w \
         -X $pkg.buildDate=${compile_date} \
         -X $pkg.gitCommit=${git_revision} \
         -X $pkg.gitVersion=${version}     \

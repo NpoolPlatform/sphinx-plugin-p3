@@ -24,6 +24,8 @@ var (
 var (
 	// ErrNodeNotSynced ..
 	ErrNodeNotSynced = errors.New("node not synced or stoped")
+	// ErrAccountNotSynced ..
+	ErrAccountNotSynced = errors.New("account scan not synced to the highest")
 	// ErrConnotGetBalance ..
 	ErrConnotGetBalance = errors.New("cannot get balance from iron node")
 	// ErrImportWalletWrong ..

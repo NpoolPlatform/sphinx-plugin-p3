@@ -94,15 +94,22 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 			return true, fmt.Errorf("%v ,%v", iron.ErrImportWalletWrong, err)
 		}
 
-		bl, err := cli.GetBalance(&types.GetBalanceRequest{
-			Account:       info.PublicKey,
+		bl, err = cli.GetBalance(&types.GetBalanceRequest{
+			Account:       info.Name,
 			Confirmations: 2,
 		})
+
 		if err != nil {
 			return true, err
 		}
 		if bl == nil {
 			return true, iron.ErrConnotGetBalance
+		}
+
+		nodeStatus, err := cli.GetNodeStatus()
+		// TODO: will be confirmed ,how sequence running
+		if nodeStatus.Blockchain.Head.Sequence-10 > int(bl.Sequence) {
+			return true, iron.ErrAccountNotSynced
 		}
 		return false, err
 	})

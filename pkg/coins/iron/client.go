@@ -16,7 +16,8 @@ const (
 	MinNodeNum       = 1
 	MaxRetries       = 3
 	retriesSleepTime = 200 * time.Millisecond
-	reqTimeout       = 3 * time.Second
+	reqTimeout       = 6 * time.Second
+	connectTimeout   = 3 * time.Second
 )
 
 type IRClientI interface {
@@ -43,6 +44,11 @@ func (irClients IRClients) GetNode(ctx context.Context, endpointmgr *endpoints.M
 		authToken = segStr[1]
 	}
 	client := sdk.NewTlsClient(addr, authToken)
+	err = client.Connect(connectTimeout)
+	if err != nil {
+		return nil, err
+	}
+
 	nodeStatus, err := client.GetNodeStatus()
 	if err != nil {
 		return nil, err

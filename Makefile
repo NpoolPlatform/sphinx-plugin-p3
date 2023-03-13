@@ -17,12 +17,11 @@ init:
 	cp -f .githooks/* .git/hooks
 
 go.mod:
-	go mod init ${GITREPO}
-	go mod tidy -compat=1.17
+	${REPO_ROOT}/hack/gomod.sh
+
 
 deps:
-	go get -d ./...
-	go mod tidy -compat=1.17
+	${REPO_ROOT}/hack/deps.sh
 
 ##@ Verify
 

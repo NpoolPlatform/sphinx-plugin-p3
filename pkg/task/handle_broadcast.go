@@ -3,7 +3,6 @@ package task
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"time"
 
 	"github.com/NpoolPlatform/message/npool/sphinxproxy"
@@ -49,7 +48,6 @@ func broadcastWorker(name string, interval time.Duration) {
 			ctx, cancel := context.WithTimeout(context.Background(), getTransactionsTimeout)
 			ctx = pconst.SetPluginInfo(ctx)
 			defer cancel()
-			fmt.Println(coinNetwork, _coinType, tState)
 			transInfos, err := pClient.GetTransactions(ctx, &sphinxproxy.GetTransactionsRequest{
 				ENV:              coinNetwork,
 				CoinType:         _coinType,
