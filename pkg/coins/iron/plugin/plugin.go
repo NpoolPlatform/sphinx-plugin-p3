@@ -165,7 +165,6 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 
 	// return json.Marshal(_out)
 	return nil, nil
-
 }
 
 func broadcast(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []byte, err error) {
@@ -266,5 +265,4 @@ func syncTx(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []b
 
 	// return in, sol.ErrSolBlockNotFound
 	return nil, nil
-
 }

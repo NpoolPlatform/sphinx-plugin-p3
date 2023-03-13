@@ -27,13 +27,13 @@ type IRClientI interface {
 
 type IRClients struct{}
 
-func (irClients IRClients) GetNode(ctx context.Context, endpointmgr *endpoints.Manager) (*sdk.Client, error) {
+func (irClients IRClients) GetNode(_ctx context.Context, endpointmgr *endpoints.Manager) (*sdk.Client, error) {
 	endpoint, err := endpointmgr.Peek()
 	if err != nil {
 		return nil, err
 	}
 
-	ctx, cancel := context.WithTimeout(ctx, reqTimeout)
+	_, cancel := context.WithTimeout(_ctx, reqTimeout)
 	defer cancel()
 	addr, authToken := "", ""
 	segStr := strings.Split(endpoint, "|")

@@ -4,6 +4,7 @@ import (
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
 
+	// register handle
 	_ "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/iron"
 	_ "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/iron/plugin"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
