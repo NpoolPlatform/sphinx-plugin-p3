@@ -5,6 +5,8 @@ import (
 )
 
 type ViewAccount struct {
+	Version     int    `json:"version"`
+	Name        string `json:"name"`
 	PublicKey   string `json:"publicKey"`
 	ViewKey     string `json:"viewKey"`
 	OutgoingKey string `json:"outgoingKey"`

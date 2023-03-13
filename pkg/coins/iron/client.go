@@ -2,11 +2,14 @@ package iron
 
 import (
 	"context"
+	"strings"
 	"time"
+
+	sdk "github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/api"
+	"github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/types"
 
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/endpoints"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/utils"
-	"github.com/gagliardetto/solana-go/rpc"
 )
 
 const (
@@ -16,14 +19,14 @@ const (
 	reqTimeout       = 3 * time.Second
 )
 
-type SClientI interface {
-	GetNode(ctx context.Context, endpointmgr *endpoints.Manager) (*rpc.Client, error)
-	WithClient(ctx context.Context, fn func(context.Context, *rpc.Client) (bool, error)) error
+type IRClientI interface {
+	GetNode(ctx context.Context, endpointmgr *endpoints.Manager) (*sdk.Client, error)
+	WithClient(ctx context.Context, fn func(context.Context, *sdk.Client) (bool, error)) error
 }
 
-type SClients struct{}
+type IRClients struct{}
 
-func (sClients SClients) GetNode(ctx context.Context, endpointmgr *endpoints.Manager) (*rpc.Client, error) {
+func (irClients IRClients) GetNode(ctx context.Context, endpointmgr *endpoints.Manager) (*sdk.Client, error) {
 	endpoint, err := endpointmgr.Peek()
 	if err != nil {
 		return nil, err
@@ -31,21 +34,35 @@ func (sClients SClients) GetNode(ctx context.Context, endpointmgr *endpoints.Man
 
 	ctx, cancel := context.WithTimeout(ctx, reqTimeout)
 	defer cancel()
-
-	client := rpc.New(endpoint)
-	_, err = client.GetHealth(ctx)
+	addr, authToken := "", ""
+	segStr := strings.Split(endpoint, "|")
+	addr = segStr[0]
+	if len(segStr) < 2 {
+		authToken = ""
+	} else {
+		authToken = segStr[1]
+	}
+	client := sdk.NewTlsClient(addr, authToken)
+	nodeStatus, err := client.GetNodeStatus()
 	if err != nil {
 		return nil, err
+	}
+
+	if nodeStatus.Node.Status != types.NodeStarted &&
+		nodeStatus.BlockSyncer.Status != types.BlockSyncerSyncing &&
+		!nodeStatus.Blockchain.Synced ||
+		!nodeStatus.PeerNetwork.IsReady {
+		return nil, ErrNodeNotSynced
 	}
 
 	return client, nil
 }
 
-func (sClients *SClients) WithClient(ctx context.Context, fn func(ctx context.Context, c *rpc.Client) (bool, error)) error {
+func (irClients *IRClients) WithClient(ctx context.Context, fn func(ctx context.Context, c *sdk.Client) (bool, error)) error {
 	var (
 		apiErr, err error
 		retry       bool
-		client      *rpc.Client
+		client      *sdk.Client
 	)
 	endpointmgr, err := endpoints.NewManager()
 	if err != nil {
@@ -57,7 +74,7 @@ func (sClients *SClients) WithClient(ctx context.Context, fn func(ctx context.Co
 			time.Sleep(retriesSleepTime)
 		}
 
-		client, err = sClients.GetNode(ctx, endpointmgr)
+		client, err = irClients.GetNode(ctx, endpointmgr)
 		if err != nil {
 			continue
 		}
@@ -73,6 +90,6 @@ func (sClients *SClients) WithClient(ctx context.Context, fn func(ctx context.Co
 	return err
 }
 
-func Client() SClientI {
-	return &SClients{}
+func Client() IRClientI {
+	return &IRClients{}
 }

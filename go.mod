@@ -9,6 +9,7 @@ require (
 	github.com/gagliardetto/binary v0.6.1
 	github.com/spf13/viper v1.12.0
 	github.com/urfave/cli/v2 v2.11.1
+	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230313023141-a7d05d620ec3
 	google.golang.org/grpc v1.52.0
 )
 
@@ -27,6 +28,7 @@ require (
 	github.com/gagliardetto/treeout v0.1.4 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.15.1 // indirect
+	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/logrusorgru/aurora v2.0.3+incompatible // indirect
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -34,7 +36,6 @@ require (
 	github.com/mostynb/zstdpool-freelist v0.0.0-20201229113212-927304c0c3b1 // indirect
 	github.com/onsi/gomega v1.13.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
-	github.com/stretchr/testify v1.7.4 // indirect
 	github.com/teris-io/shortid v0.0.0-20201117134242-e59966efd125 // indirect
 	github.com/tidwall/gjson v1.9.3 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
@@ -45,6 +46,7 @@ require (
 	golang.org/x/term v0.3.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
+	lukechampine.com/blake3 v1.1.7 // indirect
 )
 
 require (
