@@ -6,6 +6,7 @@ import (
 	"time"
 
 	sdk "github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/api"
+	//nolint
 	"github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/types"
 
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/endpoints"

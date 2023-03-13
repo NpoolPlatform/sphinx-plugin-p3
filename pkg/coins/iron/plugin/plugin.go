@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	sdk "github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/api"
+	//nolint
 	"github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/types"
 
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
@@ -164,7 +165,8 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 	// }
 
 	// return json.Marshal(_out)
-	return nil, nil
+	out = append(in, []byte("I am presign")...)
+	return out, nil
 }
 
 func broadcast(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []byte, err error) {
@@ -204,7 +206,8 @@ func broadcast(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out 
 	// }
 
 	// return json.Marshal(_out)
-	return nil, nil
+	out = append(in, []byte("I am broadcast")...)
+	return out, nil
 }
 
 // syncTx sync transaction status on chain
@@ -264,5 +267,6 @@ func syncTx(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []b
 	// }
 
 	// return in, sol.ErrSolBlockNotFound
-	return nil, nil
+	out = append(in, []byte("I am broadcast")...)
+	return out, err
 }
