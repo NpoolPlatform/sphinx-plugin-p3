@@ -16,10 +16,10 @@ type SignTxMsg struct {
 
 type BroadcastTxMsg struct {
 	FromAccount       string `json:"fromAccount"`
-	SignedTransaction string `json:"transaction"`
+	SignedTransaction string `json:"signedTransaction"`
 }
 
 type SyncTxMsg struct {
 	FromAccount string `json:"fromAccount"`
-	TxHash      string `json:"tx_id"`
+	TxHash      string `json:"tx_id"` //for updateTransaction
 }
