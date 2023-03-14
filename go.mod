@@ -8,7 +8,7 @@ require (
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
 	github.com/spf13/viper v1.12.0
 	github.com/urfave/cli/v2 v2.11.1
-	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230313083927-a9d2cffa0dce
+	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230314092527-f79662c1a73b
 	google.golang.org/grpc v1.52.0
 )
 

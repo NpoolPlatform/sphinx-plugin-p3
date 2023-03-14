@@ -1,9 +1,5 @@
 package iron
 
-import (
-	ct "github.com/NpoolPlatform/sphinx-plugin-p3/pkg/types"
-)
-
 type ViewAccount struct {
 	Version     int    `json:"version"`
 	Name        string `json:"name"`
@@ -13,11 +9,17 @@ type ViewAccount struct {
 	IncomingKey string `json:"incomingKey"`
 }
 
-type SignMsgTx struct {
-	BaseInfo        ct.BaseInfo `json:"base_info"`
-	RecentBlockHash string      `json:"recent_block_hash"`
+type SignTxMsg struct {
+	FromAccount string `json:"fromAccount"`
+	Transaction string `json:"transaction"`
 }
 
-type BroadcastRequest struct {
-	Signature []byte `json:"signature"`
+type BroadcastTxMsg struct {
+	FromAccount       string `json:"fromAccount"`
+	SignedTransaction string `json:"transaction"`
+}
+
+type SyncTxMsg struct {
+	FromAccount string `json:"fromAccount"`
+	TxHash      string `json:"tx_id"`
 }

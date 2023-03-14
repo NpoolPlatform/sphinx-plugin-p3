@@ -30,13 +30,15 @@ var (
 	ErrConnotGetBalance = errors.New("cannot get balance from iron node")
 	// ErrImportWalletWrong ..
 	ErrImportWalletWrong = errors.New("import wallet failed")
+	// ErrImportWalletWrong ..
+	ErrTxNotSynced = errors.New("transaction have not be synced")
+	// ErrImportWalletWrong ..
+	ErrTransactionFailed = errors.New("ironfish transaction failed")
 )
 
 var (
-	SolTransactionFailed = `sol transaction failed`
-	lamportsLow          = `Transfer: insufficient lamports`
-	stopErrMsg           = []string{lamportsLow, SolTransactionFailed}
-	ironfishToken        = &coins.TokenInfo{OfficialName: "IronFish", Decimal: 8, Unit: "IRON", Name: "ironfish", OfficialContract: "ironfish", TokenType: coins.Ironfish}
+	stopErrMsg    = []string{ErrNodeNotSynced.Error(), ErrAccountNotSynced.Error(), ErrTransactionFailed.Error()}
+	ironfishToken = &coins.TokenInfo{OfficialName: "IronFish", Decimal: 8, Unit: "IRON", Name: "ironfish", OfficialContract: "ironfish", TokenType: coins.Ironfish}
 )
 
 func init() {

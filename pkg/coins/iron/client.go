@@ -44,7 +44,7 @@ func (irClients IRClients) GetNode(_ctx context.Context, endpointmgr *endpoints.
 	} else {
 		authToken = segStr[1]
 	}
-	client := sdk.NewTlsClient(addr, authToken)
+	client := sdk.NewClient(addr, authToken, true)
 	err = client.Connect(connectTimeout)
 	if err != nil {
 		return nil, err

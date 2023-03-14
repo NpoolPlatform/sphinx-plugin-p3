@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	sdk "github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/api"
+
 	//nolint
 	"github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/types"
 
@@ -108,8 +109,11 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 		}
 
 		nodeStatus, err := cli.GetNodeStatus()
-		// TODO: will be confirmed ,how sequence running
-		if nodeStatus.Blockchain.Head.Sequence-10 > int(bl.Sequence) {
+		if err != nil {
+			return true, err
+		}
+
+		if nodeStatus.Blockchain.Head.Sequence > int(bl.Sequence) {
 			return true, iron.ErrAccountNotSynced
 		}
 		return false, err
@@ -136,137 +140,117 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 }
 
 func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []byte, err error) {
-	// info := ct.BaseInfo{}
-	// if err := json.Unmarshal(in, &info); err != nil {
-	// 	return in, err
-	// }
+	info := ct.BaseInfo{}
+	if err := json.Unmarshal(in, &info); err != nil {
+		return in, err
+	}
 
-	// if !coins.CheckSupportNet(info.ENV) {
-	// 	return nil, env.ErrEVNCoinNetValue
-	// }
+	if !coins.CheckSupportNet(info.ENV) {
+		return nil, env.ErrEVNCoinNetValue
+	}
+	amount, _ := iron.ToPoint(info.Value)
 
-	// client := sol.Client()
+	client := iron.Client()
 
-	// var recentBlockHash *rpc.GetLatestBlockhashResult
-	// err = client.WithClient(ctx, func(_ctx context.Context, cli *rpc.Client) (bool, error) {
-	// 	recentBlockHash, err = cli.GetLatestBlockhash(_ctx, rpc.CommitmentFinalized)
-	// 	if err != nil || recentBlockHash == nil {
-	// 		return true, err
-	// 	}
-	// 	return false, err
-	// })
-	// if err != nil {
-	// 	return in, err
-	// }
+	var createTxResp *types.CreateTransactionResponse
+	err = client.WithClient(ctx, func(ctx context.Context, c *sdk.Client) (bool, error) {
+		esFRResp, err := c.EstimateFeeRates()
+		if err != nil {
+			return true, err
+		}
+		createTxResp, err = c.CreateTransaction(&types.CreateTransactionRequest{
+			Account: info.From,
+			Outputs: []types.Output{{
+				PublicAddress: info.To,
+				Amount:        fmt.Sprint(amount),
+				Memo:          "",
+			}},
+			// TODO: wait main net and confirm
+			Fee:     "1",
+			FeeRate: esFRResp.Average,
+		})
+		if err != nil {
+			return true, err
+		}
+		return false, nil
+	})
 
-	// _out := sol.SignMsgTx{
-	// 	BaseInfo:        info,
-	// 	RecentBlockHash: recentBlockHash.Value.Blockhash.String(),
-	// }
+	if err != nil {
+		return in, iron.ErrTransactionFailed
+	}
 
-	// return json.Marshal(_out)
-	out = append(in, []byte("I am presign")...)
+	out, err = json.Marshal(iron.SignTxMsg{
+		FromAccount: info.From,
+		Transaction: createTxResp.Transaction,
+	})
+	if err != nil {
+		return in, err
+	}
 	return out, nil
 }
 
 func broadcast(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []byte, err error) {
-	// info := sol.BroadcastRequest{}
-	// if err := json.Unmarshal(in, &info); err != nil {
-	// 	return in, err
-	// }
+	info := &iron.BroadcastTxMsg{}
+	if err := json.Unmarshal(in, &info); err != nil {
+		return in, err
+	}
 
-	// tx, err := solana.TransactionFromDecoder(bin.NewBinDecoder(info.Signature))
-	// if err != nil {
-	// 	return in, err
-	// }
+	client := iron.Client()
 
-	// err = tx.VerifySignatures()
-	// if err != nil {
-	// 	return in, sol.ErrSolSignatureWrong
-	// }
+	var addTxResp *types.AddTransactionResponse
+	err = client.WithClient(ctx, func(ctx context.Context, c *sdk.Client) (bool, error) {
+		addTxResp, err = c.AddTransaction(&types.AddTransactionRequest{Transaction: info.SignedTransaction})
+		if err != nil {
+			return true, err
+		}
+		return false, nil
+	})
 
-	// client := sol.Client()
-	// if err != nil {
-	// 	return in, err
-	// }
-	// var cid solana.Signature
-	// err = client.WithClient(ctx, func(_ctx context.Context, cli *rpc.Client) (bool, error) {
-	// 	cid, err = cli.SendTransaction(_ctx, tx)
-	// 	if err != nil && !sol.TxFailErr(err) {
-	// 		return true, err
-	// 	}
-	// 	return false, err
-	// })
-	// if err != nil {
-	// 	return in, err
-	// }
-
-	// _out := ct.SyncRequest{
-	// 	TxID: cid.String(),
-	// }
-
-	// return json.Marshal(_out)
-	out = append(in, []byte("I am broadcast")...)
+	if err != nil {
+		return in, iron.ErrTransactionFailed
+	}
+	out, err = json.Marshal(iron.SyncTxMsg{
+		FromAccount: info.FromAccount,
+		TxHash:      addTxResp.Hash,
+	})
+	if err != nil {
+		return in, err
+	}
 	return out, nil
 }
 
 // syncTx sync transaction status on chain
 func syncTx(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []byte, err error) {
-	// info := ct.SyncRequest{}
-	// if err := json.Unmarshal(in, &info); err != nil {
-	// 	return in, err
-	// }
+	info := &iron.SyncTxMsg{}
+	if err := json.Unmarshal(in, &info); err != nil {
+		return in, err
+	}
 
-	// signature, err := solana.SignatureFromBase58(info.TxID)
-	// if err != nil {
-	// 	return in, err
-	// }
+	client := iron.Client()
 
-	// client := sol.Client()
-	// var chainMsg *rpc.GetTransactionResult
-	// err = client.WithClient(ctx, func(_ctx context.Context, cli *rpc.Client) (bool, error) {
-	// 	chainMsg, err = cli.GetTransaction(
-	// 		_ctx,
-	// 		signature,
-	// 		&rpc.GetTransactionOpts{
-	// 			Encoding:   solana.EncodingBase58,
-	// 			Commitment: rpc.CommitmentFinalized,
-	// 		})
-	// 	if err != nil {
-	// 		return true, err
-	// 	}
-	// 	return false, err
-	// })
+	var getATxResp *types.GetAccountTransactionResponse
+	err = client.WithClient(ctx, func(ctx context.Context, c *sdk.Client) (bool, error) {
+		getATxResp, err = c.GetAccountTransaction(&types.GetAccountTransactionRequest{
+			Hash:          info.TxHash,
+			Account:       info.FromAccount,
+			Confirmations: 2,
+		})
+		if err != nil {
+			return true, err
+		}
+		return false, nil
+	})
 
-	// if err != nil {
-	// 	return in, err
-	// }
+	if err != nil {
+		return in, err
+	}
 
-	// if chainMsg == nil {
-	// 	return in, env.ErrWaitMessageOnChain
-	// }
-
-	// if chainMsg != nil && chainMsg.Meta.Err != nil {
-	// 	sResp := &ct.SyncResponse{}
-	// 	sResp.ExitCode = -1
-	// 	out, mErr := json.Marshal(sResp)
-	// 	if mErr != nil {
-	// 		return in, mErr
-	// 	}
-	// 	return out, fmt.Errorf("%v,%v", sol.SolTransactionFailed, err)
-	// }
-
-	// if chainMsg != nil && chainMsg.Meta.Err == nil {
-	// 	sResp := &ct.SyncResponse{}
-	// 	sResp.ExitCode = 0
-	// 	out, err := json.Marshal(sResp)
-	// 	if err != nil {
-	// 		return in, err
-	// 	}
-	// 	return out, nil
-	// }
-
-	// return in, sol.ErrSolBlockNotFound
-	out = append(in, []byte("I am broadcast")...)
-	return out, err
+	switch getATxResp.Transaction.Status {
+	case types.EXPIRED:
+		return in, iron.ErrTransactionFailed
+	case types.CONFIRMED:
+		return in, nil
+	default:
+		return in, iron.ErrTxNotSynced
+	}
 }
