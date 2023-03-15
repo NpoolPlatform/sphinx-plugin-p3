@@ -88,7 +88,7 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 				ViewKey:         info.ViewKey,
 				IncomingViewKey: info.IncomingKey,
 				OutgoingViewKey: info.OutgoingKey,
-				CreateAt:        info.CreateAt,
+				CreatedAt:       info.CreatedAt,
 			},
 			Rescan: true,
 		})
@@ -99,7 +99,7 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 
 		bl, err = cli.GetBalance(&types.GetBalanceRequest{
 			Account:       info.Name,
-			Confirmations: 2,
+			Confirmations: iron.DefaultConfirmations,
 		})
 
 		if err != nil {
@@ -167,8 +167,9 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 				Memo:          "",
 			}},
 			// TODO: wait main net and confirm
-			Fee:     "1",
-			FeeRate: esFRResp.Average,
+			Fee:           "1",
+			FeeRate:       esFRResp.Average,
+			Confirmations: iron.DefaultConfirmations,
 		})
 		if err != nil {
 			return true, err
@@ -234,7 +235,7 @@ func syncTx(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []b
 		getATxResp, err = c.GetAccountTransaction(&types.GetAccountTransactionRequest{
 			Hash:          info.TxHash,
 			Account:       info.FromAccount,
-			Confirmations: 2,
+			Confirmations: iron.DefaultConfirmations,
 		})
 		if err != nil {
 			return true, err

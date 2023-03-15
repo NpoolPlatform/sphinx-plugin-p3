@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	IronPrePoint = 100000000
+	IronPrePoint         = 100000000
+	DefaultConfirmations = 2
 )
 
 var (
