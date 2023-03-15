@@ -155,10 +155,6 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 
 	var createTxResp *types.CreateTransactionResponse
 	err = client.WithClient(ctx, func(ctx context.Context, c *sdk.Client) (bool, error) {
-		esFRResp, err := c.EstimateFeeRates()
-		if err != nil {
-			return true, err
-		}
 		createTxResp, err = c.CreateTransaction(&types.CreateTransactionRequest{
 			Account: info.From,
 			Outputs: []types.Output{{
@@ -167,9 +163,7 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 				Memo:          "",
 			}},
 			// TODO: wait main net and confirm
-			Fee:           "1",
-			FeeRate:       esFRResp.Average,
-			Confirmations: iron.DefaultConfirmations,
+			Fee: "1",
 		})
 		if err != nil {
 			return true, err
@@ -201,7 +195,7 @@ func broadcast(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out 
 
 	var addTxResp *types.AddTransactionResponse
 	err = client.WithClient(ctx, func(ctx context.Context, c *sdk.Client) (bool, error) {
-		addTxResp, err = c.AddTransaction(&types.AddTransactionRequest{Transaction: info.SignedTransaction})
+		addTxResp, err = c.AddTransaction(&types.AddTransactionRequest{Transaction: info.SignedTransaction, Broadcast: true})
 		if err != nil {
 			return true, err
 		}

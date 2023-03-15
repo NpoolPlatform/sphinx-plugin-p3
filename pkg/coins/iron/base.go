@@ -11,8 +11,9 @@ import (
 )
 
 const (
-	IronPrePoint         = 100000000
-	DefaultConfirmations = 2
+	IronPrePoint               = 100000000
+	DefaultConfirmations       = 2
+	TransactionExpirationDelta = 15
 )
 
 var (

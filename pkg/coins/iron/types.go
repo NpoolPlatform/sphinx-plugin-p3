@@ -22,5 +22,5 @@ type BroadcastTxMsg struct {
 
 type SyncTxMsg struct {
 	FromAccount string `json:"fromAccount"`
-	TxHash      string `json:"tx_id"` //for updateTransaction
+	TxHash      string `json:"tx_id"` // for updateTransaction
 }
