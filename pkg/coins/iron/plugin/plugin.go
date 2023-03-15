@@ -88,6 +88,7 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 				ViewKey:         info.ViewKey,
 				IncomingViewKey: info.IncomingKey,
 				OutgoingViewKey: info.OutgoingKey,
+				CreateAt:        info.CreateAt,
 			},
 			Rescan: true,
 		})
@@ -176,7 +177,7 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 	})
 
 	if err != nil {
-		return in, iron.ErrTransactionFailed
+		return in, fmt.Errorf("%v,%v", iron.ErrTransactionFailed, err)
 	}
 
 	out, err = json.Marshal(iron.SignTxMsg{
@@ -207,7 +208,7 @@ func broadcast(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out 
 	})
 
 	if err != nil {
-		return in, iron.ErrTransactionFailed
+		return in, fmt.Errorf("%v,%v", iron.ErrTransactionFailed, err)
 	}
 	out, err = json.Marshal(iron.SyncTxMsg{
 		FromAccount: info.FromAccount,
