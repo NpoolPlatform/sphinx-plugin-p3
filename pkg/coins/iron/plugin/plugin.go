@@ -114,7 +114,7 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 			return true, err
 		}
 
-		if nodeStatus.Blockchain.Head.Sequence > int(bl.Sequence) {
+		if nodeStatus.Blockchain.Head.Sequence-iron.ToleranceHeight > int(bl.Sequence) {
 			return true, iron.ErrAccountNotSynced
 		}
 		return false, err

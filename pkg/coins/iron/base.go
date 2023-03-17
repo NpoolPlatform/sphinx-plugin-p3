@@ -13,6 +13,7 @@ import (
 const (
 	IronPrePoint               = 100000000
 	DefaultConfirmations       = 2
+	ToleranceHeight            = 1
 	TransactionExpirationDelta = 15
 )
 
