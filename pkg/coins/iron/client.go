@@ -90,6 +90,7 @@ func (irClients *IRClients) WithClient(ctx context.Context, fn func(ctx context.
 		if !retry {
 			return apiErr
 		}
+		client.Close()
 	}
 	if apiErr != nil {
 		return apiErr
