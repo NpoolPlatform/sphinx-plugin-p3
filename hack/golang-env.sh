@@ -33,8 +33,9 @@ alias go="$go_root/bin/go"
 set +e
 rc=`go version | grep $go_name`
 if [ ! $? -eq 0 ]; then
-   wget $go_tar_url -P $go_data
-    tar -zxvf $go_data/$go_tar --strip-components 1 -C $go_root
+  echo "Fetching $go_tar from $go_tar_url, stored to $go_data"
+  curl -sL $go_tar_url -o $go_data/$go_tar
+  tar -zxvf $go_data/$go_tar --strip-components 1 -C $go_root
 fi
 set -e
 
