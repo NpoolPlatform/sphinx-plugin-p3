@@ -30,17 +30,12 @@ export GOPROXY="https://proxy.golang.org,direct"
 shopt -s expand_aliases
 alias go="$go_root/bin/go"
 
-# set +e
-# rc=`go version | grep $go_name`
-# if [ ! $? -eq 0 ]; then
+set +e
+rc=`go version | grep $go_name`
+if [ ! $? -eq 0 ]; then
+  set -e
   echo "Fetching $go_tar from $go_tar_url, stored to $go_data"
   curl -L $go_tar_url -o $go_data/$go_tar
-  md5sum $go_data/$go_tar
   tar -zxvf $go_data/$go_tar --strip-components 1 -C $go_root
-# fi
-# set -e
-
-
-
-
-
+fi
+set -e
