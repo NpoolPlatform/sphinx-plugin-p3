@@ -21,7 +21,7 @@ go.mod:
 
 
 deps:
-	${REPO_ROOT}/hack/deps.sh
+	https_proxy=${all_proxy} ${REPO_ROOT}/hack/deps.sh
 
 ##@ Verify
 
@@ -34,10 +34,10 @@ add-verify-hook: ## Adds verify scripts to git pre-commit hooks.
 
 # TODO(lint): Uncomment verify-shellcheck once we finish shellchecking the repo.
 verify: go.mod verify-build verify-golangci-lint verify-go-mod #verify-shellcheck ## Runs verification scripts to ensure correct execution
-	${REPO_ROOT}/hack/verify.sh
+	https_proxy=${all_proxy} ${REPO_ROOT}/hack/verify.sh
 
 verify-build: ## Builds the project for a chosen set of platforms
-	${REPO_ROOT}/hack/verify-build.sh ...
+	https_proxy=${all_proxy} ${REPO_ROOT}/hack/verify-build.sh ...
 
 verify-go-mod: ## Runs the go module linter
 	${REPO_ROOT}/hack/verify-go-mod.sh
