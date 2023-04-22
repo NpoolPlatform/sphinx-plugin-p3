@@ -33,6 +33,8 @@ var (
 	ErrConnotGetBalance = errors.New("cannot get balance from iron node")
 	// ErrImportWalletWrong ..
 	ErrImportWalletWrong = errors.New("import wallet failed")
+	// ErrNotAcceptTx ..
+	ErrNotAcceptTx = errors.New("node not accpect transaction")
 	// ErrImportWalletWrong ..
 	ErrTxNotSynced = errors.New("transaction have not be synced")
 	// ErrImportWalletWrong ..
