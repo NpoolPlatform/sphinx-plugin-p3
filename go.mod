@@ -8,19 +8,17 @@ require (
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
 	github.com/spf13/viper v1.12.0
 	github.com/urfave/cli/v2 v2.11.1
-	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230315073138-5d5168a1d1de
+	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230422112219-92fc39ece681
 	google.golang.org/grpc v1.52.0
 )
 
 require (
 	github.com/benbjohnson/clock v1.3.0 // indirect
-	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	go.uber.org/goleak v1.1.12 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
-	lukechampine.com/blake3 v1.1.7 // indirect
 )
 
 require (
