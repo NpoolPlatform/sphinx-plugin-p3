@@ -199,9 +199,6 @@ func broadcast(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out 
 		if err != nil {
 			return true, err
 		}
-		if !addTxResp.Accepted {
-			return false, iron.ErrNotAcceptTx
-		}
 		return false, nil
 	})
 
