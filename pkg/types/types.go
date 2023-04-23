@@ -23,6 +23,7 @@ type BaseInfo struct {
 	CoinType sphinxplugin.CoinType `json:"coin_type"`
 	From     string                `json:"from"`
 	To       string                `json:"to"`
+	Memo     string                `json:"memo"`
 	Value    float64               `json:"value"`
 }
 
