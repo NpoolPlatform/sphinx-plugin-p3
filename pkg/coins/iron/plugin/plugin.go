@@ -196,10 +196,7 @@ func broadcast(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out 
 	var addTxResp *types.AddTransactionResponse
 	err = client.WithClient(ctx, func(ctx context.Context, c *sdk.Client) (bool, error) {
 		addTxResp, err = c.AddTransaction(&types.AddTransactionRequest{Transaction: info.SignedTransaction, Broadcast: true})
-		if err != nil {
-			return true, err
-		}
-		return false, nil
+		return false, err
 	})
 
 	if err != nil {
