@@ -4,15 +4,13 @@ go 1.19
 
 require (
 	github.com/NpoolPlatform/go-service-framework v0.0.0-20220818105452-9457611ae070
-	github.com/NpoolPlatform/message v0.0.0-20230329013506-e2dd3c875e19
+	github.com/NpoolPlatform/message v0.0.0-20230423123341-7bc75bfa8d79
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
 	github.com/spf13/viper v1.12.0
 	github.com/urfave/cli/v2 v2.11.1
 	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230422112219-92fc39ece681
 	google.golang.org/grpc v1.54.0
 )
-
-replace github.com/NpoolPlatform/message => github.com/NpoolPlatform/message v0.0.0-20230423105048-793b07197922
 
 require (
 	github.com/benbjohnson/clock v1.3.0 // indirect
