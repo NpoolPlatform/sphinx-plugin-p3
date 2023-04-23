@@ -110,6 +110,7 @@ func nonce(ctx context.Context, name string, transInfo *sphinxproxy.TransactionI
 		CoinType: tokenInfo.CoinType,
 		From:     transInfo.GetFrom(),
 		To:       transInfo.GetTo(),
+		Memo:     transInfo.GetMemo(),
 		Value:    transInfo.GetAmount(),
 	})
 	if err != nil {

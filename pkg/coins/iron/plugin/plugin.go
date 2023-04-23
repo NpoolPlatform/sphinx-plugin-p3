@@ -160,9 +160,9 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 			Outputs: []types.Output{{
 				PublicAddress: info.To,
 				Amount:        fmt.Sprint(amount),
-				Memo:          "",
+				Memo:          info.Memo,
 			}},
-			// TODO: wait main net and confirm
+			// TODO: now main net is fixed value ,and should check it when ironfish run stablely.
 			Fee: "1",
 		})
 		if err != nil {
