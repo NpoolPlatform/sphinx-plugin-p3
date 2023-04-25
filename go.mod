@@ -8,12 +8,13 @@ require (
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
 	github.com/spf13/viper v1.12.0
 	github.com/urfave/cli/v2 v2.11.1
-	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230425012123-aa01aa25ae42
+	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230425105932-1bf0b20d1c72
 	google.golang.org/grpc v1.54.0
 )
 
 require (
 	github.com/benbjohnson/clock v1.3.0 // indirect
+	github.com/google/uuid v1.3.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	go.uber.org/goleak v1.1.12 // indirect
