@@ -125,6 +125,8 @@ func (c *pluginClient) watch(exitSig chan os.Signal, cleanChan chan struct{}) {
 }
 
 func (c *pluginClient) register() {
+	watchCounter := 0
+	logTurnNum := 20
 	for {
 		select {
 		case <-c.exitChan:
@@ -158,7 +160,11 @@ func (c *pluginClient) register() {
 				tokensLen++
 				c.sendChannel <- resp
 			}
-			log.Infof("register new coin: %v for %s network,has %v tokens,registered %v", coinType, coinNetwork, len(tokenInfos), tokensLen)
+			if watchCounter%logTurnNum == 0 {
+				watchCounter = 0
+				log.Infof("register new coin: %v for %s network,has %v tokens,registered %v", coinType, coinNetwork, len(tokenInfos), tokensLen)
+			}
+			watchCounter++
 		}
 	}
 }
