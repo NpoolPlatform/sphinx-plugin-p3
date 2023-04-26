@@ -8,13 +8,16 @@ import (
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
+	"github.com/shopspring/decimal"
 )
 
 const (
-	IronPrePoint               = 100000000
+	IronExp                    = -8
 	DefaultConfirmations       = 2
 	ToleranceHeight            = 1
 	TransactionExpirationDelta = 15
+	// $IRON 0.0001
+	MaxFeeLimit = 10000
 )
 
 var (
@@ -39,10 +42,12 @@ var (
 	ErrTxNotSynced = errors.New("transaction have not be synced")
 	// ErrImportWalletWrong ..
 	ErrTransactionFailed = errors.New("ironfish transaction failed")
+	// ErrImportWalletWrong ..
+	ErrFeeToHigh = errors.New("fee is to high over the limit")
 )
 
 var (
-	stopErrMsg    = []string{ErrNodeNotSynced.Error(), ErrAccountNotSynced.Error(), ErrTransactionFailed.Error()}
+	stopErrMsg    = []string{ErrNodeNotSynced.Error(), ErrAccountNotSynced.Error(), ErrTransactionFailed.Error(), ErrFeeToHigh.Error()}
 	ironfishToken = &coins.TokenInfo{OfficialName: "IronFish", Decimal: 8, Unit: "IRON", Name: "ironfish", OfficialContract: "ironfish", TokenType: coins.Ironfish}
 )
 
@@ -54,20 +59,17 @@ func init() {
 	register.RegisteTokenInfo(ironfishToken)
 }
 
-func ToIron(point uint64) *big.Float {
-	// Convert lamports to sol:
-	return big.NewFloat(0).
-		Quo(
-			big.NewFloat(0).SetUint64(point),
-			big.NewFloat(0).SetUint64(IronPrePoint),
-		)
+func ToIron(balance string) (decimal.Decimal, error) {
+	//nolint
+	balanceBigInt, ok := big.NewInt(0).SetString(balance, 10)
+	if !ok {
+		return decimal.Decimal{}, errors.New("balance is invalid")
+	}
+	return decimal.NewFromBigInt(balanceBigInt, IronExp), nil
 }
 
-func ToPoint(value float64) (uint64, big.Accuracy) {
-	return big.NewFloat(0).Mul(
-		big.NewFloat(0).SetFloat64(value),
-		big.NewFloat(0).SetUint64(IronPrePoint),
-	).Uint64()
+func ToPoint(value float64) decimal.Decimal {
+	return decimal.NewFromFloat(value).Mul(decimal.NewFromBigInt(big.NewInt(1), -IronExp))
 }
 
 func TxFailErr(err error) bool {

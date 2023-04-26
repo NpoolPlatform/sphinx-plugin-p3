@@ -4,10 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"math/big"
 	"strings"
 
 	sdk "github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/api"
+	"github.com/web3eye-io/ironfish-go-sdk/pkg/utils"
 
 	//nolint
 	"github.com/web3eye-io/ironfish-go-sdk/pkg/ironfish/types"
@@ -123,14 +123,13 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 		return in, err
 	}
 
-	bigBalance, ok := big.NewInt(0).SetString(bl.Available, 10)
-	if !ok {
-		return in, fmt.Errorf("transform balance failed from %v", bl.Available)
+	balance, err := iron.ToIron(bl.Available)
+	if err != nil {
+		return in, fmt.Errorf("transform balance failed from %v", err)
 	}
-	balance := iron.ToIron(bigBalance.Uint64())
 	f, exact := balance.Float64()
-	if exact != big.Exact {
-		log.Warnf("wallet balance transfer warning balance from->to %v-%v", balance.String(), f)
+	if !exact {
+		log.Warnf("wallet balance transfer warning balance %v from->to %v-%v", bl.Available, balance.String(), f)
 	}
 
 	_out := ct.WalletBalanceResponse{
@@ -149,12 +148,17 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 	if !coins.CheckSupportNet(info.ENV) {
 		return nil, env.ErrEVNCoinNetValue
 	}
-	amount, _ := iron.ToPoint(info.Value)
 
+	amount := iron.ToPoint(info.Value).BigInt().Uint64()
 	client := iron.Client()
 
 	var createTxResp *types.CreateTransactionResponse
 	err = client.WithClient(ctx, func(ctx context.Context, c *sdk.Client) (bool, error) {
+		eFRResp, err := c.EstimateFeeRates()
+		if err != nil {
+			return true, err
+		}
+		feeRate := eFRResp.Average
 		createTxResp, err = c.CreateTransaction(&types.CreateTransactionRequest{
 			Account: info.From,
 			Outputs: []types.Output{{
@@ -162,12 +166,22 @@ func preSign(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (out []
 				Amount:        fmt.Sprint(amount),
 				Memo:          info.Memo,
 			}},
-			// TODO: now main net is fixed value ,and should check it when ironfish run stablely.
-			Fee: "1",
+			FeeRate: feeRate,
 		})
+
 		if err != nil {
 			return true, err
 		}
+
+		fee, err := utils.GetFee(createTxResp.Transaction)
+		if err != nil {
+			return false, err
+		}
+
+		if fee > iron.MaxFeeLimit {
+			return false, fmt.Errorf("%v, fee:%v, feeLimit: %v, feeRate: %v", iron.ErrFeeToHigh, fee, iron.MaxFeeLimit, feeRate)
+		}
+
 		return false, nil
 	})
 
