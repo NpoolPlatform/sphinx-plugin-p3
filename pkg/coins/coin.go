@@ -29,6 +29,10 @@ type TokenInfo struct {
 	Waight           int
 	DisableRegiste   bool
 	CoinType         sphinxplugin.CoinType
+	ChainType        sphinxplugin.ChainType
+	ChainNativeUnit  string
+	ChainAtomicUnit  string
+	ChainUnitExp     int64
 }
 
 const (

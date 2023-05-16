@@ -18,6 +18,11 @@ const (
 	TransactionExpirationDelta = 15
 	// $IRON 0.0001
 	MaxFeeLimit = 10000
+
+	ChainType       = sphinxplugin.ChainType_Ironfish
+	ChainNativeUnit = "IRON"
+	ChainAtomicUnit = "ORE"
+	ChainUnitExp    = 8
 )
 
 var (
@@ -52,6 +57,12 @@ var (
 )
 
 func init() {
+	// set chain info
+	ironfishToken.ChainType = ChainType
+	ironfishToken.ChainNativeUnit = ChainNativeUnit
+	ironfishToken.ChainAtomicUnit = ChainAtomicUnit
+	ironfishToken.ChainUnitExp = ChainUnitExp
+
 	ironfishToken.Waight = 100
 	ironfishToken.Net = coins.CoinNetMain
 	ironfishToken.Contract = ironfishToken.OfficialContract
