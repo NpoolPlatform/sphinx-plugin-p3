@@ -13,7 +13,9 @@ require (
 	google.golang.org/grpc v1.55.0
 )
 
-replace github.com/NpoolPlatform/message => github.com/NpoolPlatform/message v0.0.0-20230516092517-db9374403bf7
+replace github.com/NpoolPlatform/sphinx-plugin => github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230530085853-ded787a7d150
+
+replace github.com/NpoolPlatform/message => github.com/NpoolPlatform/message v0.0.0-20230530084451-544dbcd25a5a
 
 require (
 	github.com/benbjohnson/clock v1.3.0 // indirect

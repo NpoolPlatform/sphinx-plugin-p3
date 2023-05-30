@@ -5,6 +5,7 @@ import (
 	"strings"
 	"time"
 
+	v1 "github.com/NpoolPlatform/message/npool/basetypes/v1"
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/utils"
 )
@@ -33,6 +34,7 @@ type TokenInfo struct {
 	ChainNativeUnit  string
 	ChainAtomicUnit  string
 	ChainUnitExp     int64
+	GasType          v1.GasType
 }
 
 const (

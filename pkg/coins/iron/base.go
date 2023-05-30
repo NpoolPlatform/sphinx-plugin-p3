@@ -5,6 +5,7 @@ import (
 	"math/big"
 	"strings"
 
+	v1 "github.com/NpoolPlatform/message/npool/basetypes/v1"
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
@@ -62,6 +63,7 @@ func init() {
 	ironfishToken.ChainNativeUnit = ChainNativeUnit
 	ironfishToken.ChainAtomicUnit = ChainAtomicUnit
 	ironfishToken.ChainUnitExp = ChainUnitExp
+	ironfishToken.GasType = v1.GasType_GasUnsupported
 
 	ironfishToken.Waight = 100
 	ironfishToken.Net = coins.CoinNetMain
