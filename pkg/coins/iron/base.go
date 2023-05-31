@@ -20,10 +20,13 @@ const (
 	// $IRON 0.0001
 	MaxFeeLimit = 10000
 
-	ChainType       = sphinxplugin.ChainType_Ironfish
-	ChainNativeUnit = "IRON"
-	ChainAtomicUnit = "ORE"
-	ChainUnitExp    = 8
+	ChainType           = sphinxplugin.ChainType_Ironfish
+	ChainNativeUnit     = "IRON"
+	ChainAtomicUnit     = "ORE"
+	ChainUnitExp        = 8
+	ChainID             = "1"
+	ChainNickname       = "ironfish"
+	ChainNativeCoinName = "ironfish"
 )
 
 var (
@@ -54,7 +57,7 @@ var (
 
 var (
 	stopErrMsg    = []string{ErrNodeNotSynced.Error(), ErrAccountNotSynced.Error(), ErrTransactionFailed.Error(), ErrFeeToHigh.Error()}
-	ironfishToken = &coins.TokenInfo{OfficialName: "IronFish", Decimal: 8, Unit: "IRON", Name: "ironfish", OfficialContract: "ironfish", TokenType: coins.Ironfish}
+	ironfishToken = &coins.TokenInfo{OfficialName: "IronFish", Decimal: 8, Unit: "IRON", Name: ChainNativeCoinName, OfficialContract: ChainNativeCoinName, TokenType: coins.Ironfish}
 )
 
 func init() {
@@ -64,6 +67,9 @@ func init() {
 	ironfishToken.ChainAtomicUnit = ChainAtomicUnit
 	ironfishToken.ChainUnitExp = ChainUnitExp
 	ironfishToken.GasType = v1.GasType_GasUnsupported
+	ironfishToken.ChainID = ChainID
+	ironfishToken.ChainNickname = ironfishToken.ChainNickname
+	ironfishToken.ChainNativeCoinName = ChainNativeCoinName
 
 	ironfishToken.Waight = 100
 	ironfishToken.Net = coins.CoinNetMain
