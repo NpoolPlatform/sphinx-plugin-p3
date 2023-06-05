@@ -25,7 +25,7 @@ const (
 	ChainAtomicUnit     = "ORE"
 	ChainUnitExp        = 8
 	ChainID             = "1"
-	ChainNickname       = "ironfish"
+	ChainNickname       = "Ironfish"
 	ChainNativeCoinName = "ironfish"
 )
 
