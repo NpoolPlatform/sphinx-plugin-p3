@@ -14,7 +14,7 @@ require (
 	google.golang.org/grpc v1.55.0
 )
 
-replace github.com/NpoolPlatform/sphinx-plugin => github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230531065048-e6be836dc80c
+replace github.com/NpoolPlatform/sphinx-plugin => github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230605094442-11331e6d0b60
 
 replace github.com/NpoolPlatform/message => github.com/NpoolPlatform/message v0.0.0-20230531060256-dedb46122232
 

@@ -42,8 +42,8 @@ github.com/NpoolPlatform/go-service-framework v0.0.0-20220818105452-9457611ae070
 github.com/NpoolPlatform/go-service-framework v0.0.0-20220818105452-9457611ae070/go.mod h1:QPI3Fu/AU5iUOUnf9EictZP1lqPQdPcVLqveIB2HovI=
 github.com/NpoolPlatform/message v0.0.0-20230531060256-dedb46122232 h1:FL5UgwlsCuchjCeWTzkIn6QqzEE6HUFN/cEboSgNHGY=
 github.com/NpoolPlatform/message v0.0.0-20230531060256-dedb46122232/go.mod h1:PxJpF0vSSOke+NJskbRBRQ2fK2K3SRe8zaEja+GxSHk=
-github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230531065048-e6be836dc80c h1:cW3MDbKXUZDRgRVao3KVUoCi5oKTKEqmjzwc7w4YY7Y=
-github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230531065048-e6be836dc80c/go.mod h1:905+f1JQ/cXsJ6NFsnF183LEft+vptxxbzoYNA+CBqo=
+github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230605094442-11331e6d0b60 h1:+fko81UreQ5fjqM0KQGEKWAjKFPTMbDEJcETuFP0Kq0=
+github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230605094442-11331e6d0b60/go.mod h1:905+f1JQ/cXsJ6NFsnF183LEft+vptxxbzoYNA+CBqo=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
 github.com/benbjohnson/clock v1.3.0 h1:ip6w0uFQkncKQ979AypyG0ER7mqUSBdKLOgAle/AT8A=
 github.com/benbjohnson/clock v1.3.0/go.mod h1:J11/hYXuz8f4ySSvYwY0FKfm+ezbsZBKZxNJlLklBHA=
