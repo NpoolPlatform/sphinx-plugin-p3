@@ -68,7 +68,7 @@ func init() {
 	ironfishToken.ChainUnitExp = ChainUnitExp
 	ironfishToken.GasType = v1.GasType_GasUnsupported
 	ironfishToken.ChainID = ChainID
-	ironfishToken.ChainNickname = ironfishToken.ChainNickname
+	ironfishToken.ChainNickname = ChainNickname
 	ironfishToken.ChainNativeCoinName = ChainNativeCoinName
 
 	ironfishToken.Waight = 100
