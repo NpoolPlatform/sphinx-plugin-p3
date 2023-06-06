@@ -5,6 +5,7 @@ import (
 	"math/big"
 	"strings"
 
+	basetypes "github.com/NpoolPlatform/message/npool/basetypes/v1"
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
@@ -18,6 +19,13 @@ const (
 	TransactionExpirationDelta = 15
 	// $IRON 0.0001
 	MaxFeeLimit = 10000
+
+	ChainType           = sphinxplugin.ChainType_Ironfish
+	ChainNativeUnit     = "IRON"
+	ChainAtomicUnit     = "ORE"
+	ChainUnitExp        = 8
+	ChainID             = "51f33a2f14f92735e562dc658a5639279ddca3d5079a6d1242b2a588a9cbf44c"
+	ChainNativeCoinName = "ironfish"
 )
 
 var (
@@ -48,10 +56,20 @@ var (
 
 var (
 	stopErrMsg    = []string{ErrNodeNotSynced.Error(), ErrAccountNotSynced.Error(), ErrTransactionFailed.Error(), ErrFeeToHigh.Error()}
-	ironfishToken = &coins.TokenInfo{OfficialName: "IronFish", Decimal: 8, Unit: "IRON", Name: "ironfish", OfficialContract: "ironfish", TokenType: coins.Ironfish}
+	ironfishToken = &coins.TokenInfo{OfficialName: "IronFish", Decimal: 8, Unit: "IRON", Name: ChainNativeCoinName, OfficialContract: ChainNativeCoinName, TokenType: coins.Ironfish}
 )
 
 func init() {
+	// set chain info
+	ironfishToken.ChainType = ChainType
+	ironfishToken.ChainNativeUnit = ChainNativeUnit
+	ironfishToken.ChainAtomicUnit = ChainAtomicUnit
+	ironfishToken.ChainUnitExp = ChainUnitExp
+	ironfishToken.GasType = basetypes.GasType_GasUnsupported
+	ironfishToken.ChainID = ChainID
+	ironfishToken.ChainNickname = ChainType.String()
+	ironfishToken.ChainNativeCoinName = ChainNativeCoinName
+
 	ironfishToken.Waight = 100
 	ironfishToken.Net = coins.CoinNetMain
 	ironfishToken.Contract = ironfishToken.OfficialContract

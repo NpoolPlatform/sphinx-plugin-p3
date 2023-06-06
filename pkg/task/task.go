@@ -149,7 +149,16 @@ func (c *pluginClient) register() {
 					continue
 				}
 				resp := &sphinxproxy.ProxyPluginResponse{
-					CoinType:        tokenInfo.CoinType,
+					CoinType:            tokenInfo.CoinType,
+					ChainType:           tokenInfo.ChainType,
+					ChainNativeUnit:     tokenInfo.ChainNativeUnit,
+					ChainAtomicUnit:     tokenInfo.ChainAtomicUnit,
+					ChainUnitExp:        tokenInfo.ChainUnitExp,
+					GasType:             tokenInfo.GasType,
+					ChainID:             tokenInfo.ChainID,
+					ChainNickname:       tokenInfo.ChainNickname,
+					ChainNativeCoinName: tokenInfo.ChainNativeCoinName,
+
 					Name:            tokenInfo.Name,
 					TransactionType: sphinxproxy.TransactionType_RegisterCoin,
 					ENV:             tokenInfo.Net,

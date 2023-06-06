@@ -5,6 +5,7 @@ import (
 	"strings"
 	"time"
 
+	v1 "github.com/NpoolPlatform/message/npool/basetypes/v1"
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/utils"
 )
@@ -18,17 +19,25 @@ const (
 )
 
 type TokenInfo struct {
-	OfficialName     string
-	OfficialContract string
-	Contract         string // if ENV is main Contract = OfficialContract
-	TokenType        TokenType
-	Net              string
-	Unit             string
-	Decimal          int
-	Name             string
-	Waight           int
-	DisableRegiste   bool
-	CoinType         sphinxplugin.CoinType
+	OfficialName        string
+	OfficialContract    string
+	Contract            string // if ENV is main Contract = OfficialContract
+	TokenType           TokenType
+	Net                 string
+	Unit                string
+	Decimal             int
+	Name                string
+	Waight              int
+	DisableRegiste      bool
+	CoinType            sphinxplugin.CoinType
+	ChainType           sphinxplugin.ChainType
+	ChainNativeUnit     string
+	ChainAtomicUnit     string
+	ChainUnitExp        uint32
+	GasType             v1.GasType
+	ChainID             string
+	ChainNickname       string
+	ChainNativeCoinName string
 }
 
 const (
@@ -80,6 +89,21 @@ func CoinStr2CoinType(netEnv, coinStr string) sphinxplugin.CoinType {
 	_netEnv := strings.ToLower(netEnv)
 	_coinStr := strings.ToLower(coinStr)
 	return netCoinMap[_netEnv][_coinStr]
+}
+
+func ToTestChainType(chainType sphinxplugin.ChainType) sphinxplugin.ChainType {
+	if chainType == sphinxplugin.ChainType_UnKnow {
+		return sphinxplugin.ChainType_UnKnow
+	}
+	name, ok := sphinxplugin.ChainType_name[int32(chainType)]
+	if !ok {
+		return sphinxplugin.ChainType_UnKnow
+	}
+	_chainType, ok := sphinxplugin.ChainType_value[fmt.Sprintf("T%v", name)]
+	if !ok {
+		return sphinxplugin.ChainType_UnKnow
+	}
+	return sphinxplugin.ChainType(_chainType)
 }
 
 func ToTestCoinType(coinType sphinxplugin.CoinType) sphinxplugin.CoinType {
