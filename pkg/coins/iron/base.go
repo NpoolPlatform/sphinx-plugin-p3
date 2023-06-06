@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"strings"
 
-	v1 "github.com/NpoolPlatform/message/npool/basetypes/v1"
+	basetypes "github.com/NpoolPlatform/message/npool/basetypes/v1"
 	"github.com/NpoolPlatform/message/npool/sphinxplugin"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins"
 	"github.com/NpoolPlatform/sphinx-plugin-p3/pkg/coins/register"
@@ -25,7 +25,6 @@ const (
 	ChainAtomicUnit     = "ORE"
 	ChainUnitExp        = 8
 	ChainID             = "51f33a2f14f92735e562dc658a5639279ddca3d5079a6d1242b2a588a9cbf44c"
-	ChainNickname       = "Ironfish"
 	ChainNativeCoinName = "ironfish"
 )
 
@@ -66,9 +65,9 @@ func init() {
 	ironfishToken.ChainNativeUnit = ChainNativeUnit
 	ironfishToken.ChainAtomicUnit = ChainAtomicUnit
 	ironfishToken.ChainUnitExp = ChainUnitExp
-	ironfishToken.GasType = v1.GasType_GasUnsupported
+	ironfishToken.GasType = basetypes.GasType_GasUnsupported
 	ironfishToken.ChainID = ChainID
-	ironfishToken.ChainNickname = ChainNickname
+	ironfishToken.ChainNickname = ChainType.String()
 	ironfishToken.ChainNativeCoinName = ChainNativeCoinName
 
 	ironfishToken.Waight = 100

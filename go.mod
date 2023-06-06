@@ -4,8 +4,8 @@ go 1.19
 
 require (
 	github.com/NpoolPlatform/go-service-framework v0.0.0-20220818105452-9457611ae070
-	github.com/NpoolPlatform/message v0.0.0-20230531060256-dedb46122232
-	github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230505102055-b95c84741875
+	github.com/NpoolPlatform/message v0.0.0-20230605075344-03a09d2c34b8
+	github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230606020627-c0f21d5e1a76
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
 	github.com/shopspring/decimal v1.3.1
 	github.com/spf13/viper v1.12.0
@@ -13,10 +13,6 @@ require (
 	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230426093851-c1b5059b8eae
 	google.golang.org/grpc v1.55.0
 )
-
-replace github.com/NpoolPlatform/sphinx-plugin => github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230605094442-11331e6d0b60
-
-replace github.com/NpoolPlatform/message => github.com/NpoolPlatform/message v0.0.0-20230531060256-dedb46122232
 
 require (
 	github.com/benbjohnson/clock v1.3.0 // indirect
