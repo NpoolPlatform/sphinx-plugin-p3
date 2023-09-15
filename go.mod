@@ -3,9 +3,9 @@ module github.com/NpoolPlatform/sphinx-plugin-p3
 go 1.19
 
 require (
-	github.com/NpoolPlatform/go-service-framework v0.0.0-20220818105452-9457611ae070
-	github.com/NpoolPlatform/message v0.0.0-20230605075344-03a09d2c34b8
-	github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230606020627-c0f21d5e1a76
+	github.com/NpoolPlatform/go-service-framework v0.0.0-20230913101807-3934219c0456
+	github.com/NpoolPlatform/message v0.0.0-20230914023737-ac5d6d2a3a03
+	github.com/NpoolPlatform/sphinx-plugin v0.0.0-20230914025325-158c3b77ef83
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
 	github.com/shopspring/decimal v1.3.1
 	github.com/spf13/viper v1.12.0
@@ -18,9 +18,10 @@ require (
 	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
+	github.com/stretchr/testify v1.8.3 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	go.uber.org/goleak v1.1.12 // indirect
-	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
+	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 )
 
@@ -34,7 +35,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
-	github.com/spf13/afero v1.8.2 // indirect
+	github.com/spf13/afero v1.9.2 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
