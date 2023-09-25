@@ -7,7 +7,6 @@ type ViewAccount struct {
 	ViewKey     string `json:"viewKey"`
 	OutgoingKey string `json:"outgoingKey"`
 	IncomingKey string `json:"incomingKey"`
-	CreatedAt   string `json:"createdAt"`
 }
 
 type SignTxMsg struct {
