@@ -88,7 +88,6 @@ func walletBalance(ctx context.Context, in []byte, tokenInfo *coins.TokenInfo) (
 				ViewKey:         info.ViewKey,
 				IncomingViewKey: info.IncomingKey,
 				OutgoingViewKey: info.OutgoingKey,
-				CreatedAt:       info.CreatedAt,
 			},
 			Rescan: true,
 		})

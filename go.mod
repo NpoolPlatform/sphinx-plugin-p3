@@ -10,7 +10,7 @@ require (
 	github.com/shopspring/decimal v1.3.1
 	github.com/spf13/viper v1.12.0
 	github.com/urfave/cli/v2 v2.17.2-0.20221006022127-8f469abc00aa
-	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230426093851-c1b5059b8eae
+	github.com/web3eye-io/ironfish-go-sdk v0.0.0-20230810035125-dca25f2414b0
 	google.golang.org/grpc v1.55.0
 )
 

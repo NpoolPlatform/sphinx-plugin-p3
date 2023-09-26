@@ -43,7 +43,7 @@ var runCmd = &cli.Command{
 			BuildChainServer: buildChainServer,
 		})
 		err := logger.Init(
-			logger.DebugLevel,
+			logger.InfoLevel,
 			filepath.Join(config.GetENV().LogDir, "sphinx-plugin.log"),
 			zap.AddCallerSkip(1),
 		)
